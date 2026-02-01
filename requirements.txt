@@ -1,0 +1,37 @@
+# Smart Study Planner - Backend Dependencies
+# Python 3.11+
+
+# Web Framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+
+# Database
+motor==3.7.0           # Async MongoDB driver
+pymongo==4.16.0        # MongoDB driver (for schemas)
+
+# Validation & Settings
+pydantic==2.12.5
+pydantic[email]==2.12.5
+pydantic-settings==2.7.1
+
+# Environment
+python-dotenv==1.0.1
+
+# Form handling
+python-multipart==0.0.20
+
+# Security & Authentication
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+
+# HTTP client (for testing/integrations)
+httpx==0.28.1
+
+# Development Dependencies
+# Uncomment for development
+# black==24.4.2
+# flake8==7.1.1
+# mypy==1.13.0
+# pytest==8.3.4
+# pytest-asyncio==0.24.0
+# pytest-cov==6.0.0
