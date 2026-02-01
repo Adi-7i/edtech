@@ -103,6 +103,11 @@ class Collections:
     # User & Auth
     USERS = "users"
     STUDY_PROFILES = "study_profiles"
+    REFRESH_TOKENS = "refresh_tokens"
+    
+    # User Study Configuration
+    USER_SUBJECTS = "user_subjects"
+    USER_CHAPTERS = "user_chapters"
     
     # Academic
     EXAMS = "exams"

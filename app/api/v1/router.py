@@ -66,6 +66,15 @@ router.include_router(
     tags=["Authentication"]
 )
 
+# Study Profile routes
+from app.modules.study_profile.router import router as profile_router
+
+router.include_router(
+    profile_router,
+    prefix="/profile",
+    tags=["Study Profile"]
+)
+
 # Example of how to include feature module routes:
 #
 # from app.api.v1.endpoints import users, study_plans
@@ -75,9 +84,4 @@ router.include_router(
 #     prefix="/users",
 #     tags=["Users"]
 # )
-#
-# router.include_router(
-#     study_plans.router,
-#     prefix="/study-plans",
-#     tags=["Study Plans"]
-# )
+

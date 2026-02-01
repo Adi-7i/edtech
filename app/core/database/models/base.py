@@ -53,6 +53,7 @@ class _ObjectIdPydanticAnnotation:
                 serialize_object_id,
                 info_arg=False,
                 return_schema=core_schema.str_schema(),
+                when_used='json',  # Only serialize to string for JSON, keep ObjectId in Python mode
             ),
         )
     
@@ -113,9 +114,26 @@ class MongoBaseModel(BaseModel):
         """
         Serialize model for MongoDB insertion.
         Excludes None values and unset fields by default.
+        Converts date objects to datetime for MongoDB compatibility.
+        Preserves ObjectId types for proper MongoDB storage.
         """
-        data = self.model_dump(by_alias=True, exclude_none=True, **kwargs)
-        return data
+        from datetime import date as date_type
+        
+        # Use mode='python' to keep ObjectId as ObjectId, not serialized to string
+        data = self.model_dump(by_alias=True, exclude_none=True, mode='python', **kwargs)
+        
+        # MongoDB doesn't support date objects, convert to datetime
+        def convert_for_mongo(obj):
+            if isinstance(obj, dict):
+                return {k: convert_for_mongo(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_for_mongo(item) for item in obj]
+            elif isinstance(obj, date_type) and not isinstance(obj, datetime):
+                # Convert date to datetime at midnight UTC
+                return datetime.combine(obj, datetime.min.time(), tzinfo=timezone.utc)
+            return obj
+        
+        return convert_for_mongo(data)
     
     @classmethod
     def from_mongo(cls, data: dict):
