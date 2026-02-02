@@ -28,6 +28,7 @@ class TaskStatus(str, Enum):
     PENDING = "pending"
     IN_PROGRESS = "in_progress"
     COMPLETED = "completed"
+    PARTIAL = "partial"
     MISSED = "missed"
     RESCHEDULED = "rescheduled"
 

@@ -84,13 +84,19 @@ router.include_router(
     tags=["Planner"]
 )
 
+# Task Execution routes
+from app.modules.tasks.router import router as tasks_router
+
+router.include_router(
+    tasks_router,
+    prefix="/tasks",
+    tags=["Task Execution"]
+)
+
 # Example of how to include feature module routes:
 #
 # from app.api.v1.endpoints import users, study_plans
 #
-# router.include_router(
-#     users.router,
-#     prefix="/users",
-#     tags=["Users"]
+# router.include_router(users.router, prefix="/users", tags=["Users"])
+# router.include_router(study_plans.router, prefix="/study-plans", tags=["Study Plans"])
 # )
-
