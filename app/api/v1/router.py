@@ -93,6 +93,15 @@ router.include_router(
     tags=["Task Execution"]
 )
 
+# Revision routes
+from app.modules.revision.router import router as revision_router
+
+router.include_router(
+    revision_router,
+    prefix="/revision",
+    tags=["Revision"]
+)
+
 # Example of how to include feature module routes:
 #
 # from app.api.v1.endpoints import users, study_plans
