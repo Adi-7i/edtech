@@ -102,6 +102,15 @@ router.include_router(
     tags=["Revision"]
 )
 
+# Analytics routes
+from app.modules.analytics.router import router as analytics_router
+
+router.include_router(
+    analytics_router,
+    prefix="/analytics",
+    tags=["Analytics"]
+)
+
 # Example of how to include feature module routes:
 #
 # from app.api.v1.endpoints import users, study_plans
