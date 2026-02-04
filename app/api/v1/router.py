@@ -129,6 +129,15 @@ router.include_router(
     tags=["Subscription"]
 )
 
+# AI Assistant routes
+from app.modules.ai_assistant.router import router as ai_assistant_router
+
+router.include_router(
+    ai_assistant_router,
+    prefix="/ai",
+    tags=["AI Assistant"]
+)
+
 # Example of how to include feature module routes:
 #
 # from app.api.v1.endpoints import users, study_plans

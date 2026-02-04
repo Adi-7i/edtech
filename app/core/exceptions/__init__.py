@@ -41,3 +41,25 @@ class ForbiddenException(HTTPException):
             status_code=status.HTTP_403_FORBIDDEN,
             detail=message
         )
+
+
+class ConflictException(HTTPException):
+    """409 Conflict"""
+    def __init__(self, message: str = "Conflict"):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=message
+        )
+
+
+class TooManyRequestsException(HTTPException):
+    """429 Too Many Requests"""
+    def __init__(self, message: str = "Too many requests"):
+        super().__init__(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=message
+        )
+
+
+# Legacy alias for backwards compatibility
+AppException = HTTPException
