@@ -111,6 +111,24 @@ router.include_router(
     tags=["Analytics"]
 )
 
+# Notification routes
+from app.modules.notifications.router import router as notifications_router
+
+router.include_router(
+    notifications_router,
+    prefix="/notifications",
+    tags=["Notifications"]
+)
+
+# Subscription routes
+from app.modules.subscription.router import router as subscription_router
+
+router.include_router(
+    subscription_router,
+    prefix="/subscription",
+    tags=["Subscription"]
+)
+
 # Example of how to include feature module routes:
 #
 # from app.api.v1.endpoints import users, study_plans
